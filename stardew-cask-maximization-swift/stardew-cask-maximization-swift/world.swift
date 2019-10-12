@@ -73,11 +73,8 @@ class World {
     }
     
     init(path: String) {
-        guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            fatalError("No FileManager Found")
-        }
-        
-        let fileURL = dir.appendingPathComponent(path)
+        let dir = FileManager.default.currentDirectoryPath
+        let fileURL = URL(fileURLWithPath: dir).appendingPathComponent(path)
         
         guard let map = try? String(contentsOf: fileURL) else {
             fatalError("Cannot read file \(fileURL.absoluteURL.absoluteString)")
@@ -88,7 +85,7 @@ class World {
         let possible: Character = "O"
         let start: Character = "S"
         
-        let parsed = map.components(separatedBy: lineEnd)
+        let parsed = map.components(separatedBy: lineEnd).filter { !$0.isEmpty }
         let height = parsed.count
         guard height > 0 else {
             fatalError("No valid map found")
@@ -129,42 +126,34 @@ class World {
                 var idx = -1
                 idx = idxFunc(i: i-1, j: j)
                 var neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .north)
                 
                 idx = idxFunc(i: i+1, j: j)
                 neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .south)
                 
                 idx = idxFunc(i: i, j: j-1)
                 neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .west)
                 
                 idx = idxFunc(i: i, j: j+1)
                 neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .east)
                 
                 idx = idxFunc(i: i-1, j: j-1)
                 neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .northwest)
                 
                 idx = idxFunc(i: i+1, j: j-1)
                 neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .southwest)
                 
                 idx = idxFunc(i: i-1, j: j+1)
                 neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .northeast)
                 
                 idx = idxFunc(i: i+1, j: j+1)
                 neighbor = nodes[idx]
-                neighbor.state = .empty
                 node.appendNeighbor(node: neighbor, at: .southeast)
             }
         }

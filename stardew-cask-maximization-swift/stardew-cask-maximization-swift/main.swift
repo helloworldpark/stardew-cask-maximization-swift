@@ -10,3 +10,6 @@ import Foundation
 
 let world = World(width: 3, height: 4)
 world.printWorld()
+
+let world2 = World(path: "map_test.txt")
+world2.printWorld()

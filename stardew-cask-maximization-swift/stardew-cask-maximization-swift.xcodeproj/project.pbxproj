@@ -31,6 +31,7 @@
 		CEE6971F2351ED4A00A6B3AC /* node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = node.swift; sourceTree = "<group>"; };
 		CEE697212351EEA800A6B3AC /* world.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = world.swift; sourceTree = "<group>"; };
 		CEE697232351F27100A6B3AC /* weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weak.swift; sourceTree = "<group>"; };
+		CEE697252352023A00A6B3AC /* map_test.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = map_test.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 				CEE6971F2351ED4A00A6B3AC /* node.swift */,
 				CEE697212351EEA800A6B3AC /* world.swift */,
 				CEE697232351F27100A6B3AC /* weak.swift */,
+				CEE697252352023A00A6B3AC /* map_test.txt */,
 			);
 			path = "stardew-cask-maximization-swift";
 			sourceTree = "<group>";
