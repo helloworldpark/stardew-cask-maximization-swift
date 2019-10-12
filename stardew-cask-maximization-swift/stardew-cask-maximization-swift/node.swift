@@ -59,9 +59,9 @@ class Node {
     func printNode() {
         switch state {
         case .dummy:
-            print("D", terminator: "")
+            print(".", terminator: "")
         case .empty:
-            print("?", terminator: "")
+            print("O", terminator: "")
         case .cask:
             print("C", terminator: "")
         case .impossible:
