@@ -66,3 +66,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+stardew-cask-maximization-swift/stardew-cask-maximization-swift.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+stardew-cask-maximization-swift/stardew-cask-maximization-swift.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
