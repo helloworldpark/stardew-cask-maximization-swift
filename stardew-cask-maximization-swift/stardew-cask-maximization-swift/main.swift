@@ -8,5 +8,5 @@
 
 import Foundation
 
-print("Hello, World!")
-
+let world = World(width: 3, height: 4)
+world.printWorld()

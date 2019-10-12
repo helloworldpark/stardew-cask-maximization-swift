@@ -15,6 +15,7 @@ class Node {
         case empty
         case start
         case path
+        case impossible
         case cask
     }
     
@@ -31,6 +32,12 @@ class Node {
     
     var state: State = .empty
     var neighbors: [WeakReference<Node>] = []
+    var accessable: Bool {
+        if state == .dummy || state == .impossible {
+            return false
+        }
+        return true
+    }
     
     init(state: State) {
         self.state = state
@@ -47,5 +54,22 @@ class Node {
     
     func neighbor(at: Direction) -> Node {
         return neighbors[at.rawValue].w!
+    }
+    
+    func printNode() {
+        switch state {
+        case .dummy:
+            print("D", terminator: "")
+        case .empty:
+            print("?", terminator: "")
+        case .cask:
+            print("C", terminator: "")
+        case .impossible:
+            print("X", terminator: "")
+        case .path:
+            print(" ", terminator: "")
+        case .start:
+            print("S", terminator: "")
+        }
     }
 }
