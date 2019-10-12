@@ -34,7 +34,6 @@ class World {
         
         let lineEnd = "\n"
         let impossible: Character = "X"
-        let possible: Character = "O"
         let start: Character = "S"
         
         let parsed = map.components(separatedBy: lineEnd).filter { !$0.isEmpty }
