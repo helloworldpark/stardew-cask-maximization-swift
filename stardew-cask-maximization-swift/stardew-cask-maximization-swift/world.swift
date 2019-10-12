@@ -15,9 +15,7 @@ class World {
     let height: Int
     
     init(width: Int, height: Int) {
-        let nodes = World.createNodes(width: width, height: height) { (i, j) -> Node.State in
-            return .empty
-        }
+        let nodes = World.createNodes(width: width, height: height) { _,_ in return .empty }
         
         self.nodes = nodes
         self.width = width
