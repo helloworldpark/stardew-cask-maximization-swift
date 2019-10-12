@@ -11,6 +11,7 @@ import Foundation
 class World {
     
     let nodes: [Node]
+    let startingNode: [Node]
     let width: Int
     let height: Int
     
@@ -20,6 +21,13 @@ class World {
         self.nodes = nodes
         self.width = width
         self.height = height
+        
+        var startingNode = self.nodes.filter { $0.state == .start }
+        if startingNode.isEmpty {
+            self.nodes[1 * (width + 2) + 1].state = .start
+            startingNode = self.nodes.filter { $0.state == .start }
+        }
+        self.startingNode = startingNode
     }
     
     init(path: String) {
@@ -57,6 +65,13 @@ class World {
         self.nodes = nodes
         self.width = width
         self.height = height
+        
+        var startingNode = self.nodes.filter { $0.state == .start }
+        if startingNode.isEmpty {
+            self.nodes[1 * (width + 2) + 1].state = .start
+            startingNode = self.nodes.filter { $0.state == .start }
+        }
+        self.startingNode = startingNode
     }
     
     func printWorld() {
