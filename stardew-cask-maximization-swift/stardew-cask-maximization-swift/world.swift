@@ -8,12 +8,28 @@
 
 import Foundation
 
-class World {
+class World: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copied = World(width: self.width, height: self.height, nodes: self.nodes)
+        return copied
+    }
     
     let nodes: [Node]
     let startingNode: [Node]
     let width: Int
     let height: Int
+    
+    // For deep copy
+    private init(width: Int, height: Int, nodes: [Node]) {
+        self.width = width
+        self.height = height
+        var newNodes: [Node] = []
+        for n in nodes {
+            newNodes.append(n.copy() as! Node)
+        }
+        self.nodes = newNodes
+        self.startingNode = self.nodes.filter { $0.state == .start }
+    }
     
     init(width: Int, height: Int) {
         let nodes = World.createNodes(width: width, height: height) { _,_ in return .empty }

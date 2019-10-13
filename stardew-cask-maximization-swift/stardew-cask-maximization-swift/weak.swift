@@ -8,10 +8,14 @@
 
 import Foundation
 
-class WeakReference<T: AnyObject> {
+class WeakReference<T: AnyObject>: NSCopying {
     weak var w: T?
     
     init(_ w: T) {
         self.w = w
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        return WeakReference(w!)
     }
 }

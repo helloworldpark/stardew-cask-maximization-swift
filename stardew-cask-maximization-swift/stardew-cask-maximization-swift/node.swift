@@ -8,13 +8,12 @@
 
 import Foundation
 
-class Node {
+class Node: NSCopying {
     
     enum State {
         case dummy
         case empty
         case start
-        case path
         case impossible
         case cask
     }
@@ -32,7 +31,9 @@ class Node {
     
     var state: State = .empty
     var neighbors: [WeakReference<Node>] = []
-    var accessable: Bool {
+    var visited: Bool = false
+    
+    var accessible: Bool {
         if state == .dummy || state == .impossible {
             return false
         }
@@ -66,10 +67,16 @@ class Node {
             print("C", terminator: "")
         case .impossible:
             print("X", terminator: "")
-        case .path:
-            print(" ", terminator: "")
         case .start:
             print("S", terminator: "")
         }
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copied = Node(state: self.state)
+        copied.neighbors = self.neighbors
+        copied.visited = self.visited
+        
+        return copied
     }
 }
