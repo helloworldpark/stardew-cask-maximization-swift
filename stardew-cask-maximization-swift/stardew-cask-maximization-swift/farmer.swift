@@ -54,9 +54,10 @@ class Farmer {
     }
     
     func install()  {
-        var queue: [(last: Node, now: Node)] = [(last: self.start, now: self.start)]
-        while queue.isEmpty == false {
-            let popped = queue.removeLast()
+        var stack: [(last: Node, now: Node)] = [(last: self.start, now: self.start)]
+        while stack.isEmpty == false {
+            print("Stack: \(stack)")
+            let popped = stack.removeLast()
             let next = moveAndInstall(last: popped.last, now: popped.now)
             if next.isEmpty {
                 // Deadend
@@ -64,10 +65,14 @@ class Farmer {
             } else {
                 // Can proceed
                 for direction in next {
-                    queue.append((last: popped.now, now: popped.now.neighbor(at: direction)))
-                    print("Move to \(direction)")
+                    let nextNode = popped.now.neighbor(at: direction)
+                    if nextNode.accessible && nextNode.visited == false {
+                        stack.append((last: popped.now, now: nextNode))
+                        print("Move to \(direction)")
+                    }
                 }
             }
+            world.printWorld()
             print("----------")
         }
         
@@ -76,15 +81,17 @@ class Farmer {
     }
     
     private func moveAndInstall(last: Node, now: Node) -> [Node.Direction] {
+        print("Last: \(last), Now: \(now)")
         guard now.visited == false else {
             print("Visited")
             return []
         }
         // 1. Install cask
+        let oldCaskCount = self.caskCount
         var modified: [Node] = []
         for d in Farmer.accessibleDirection {
             let node = now.neighbor(at: d)
-            if node === last {
+            if node.visited {
                 continue
             }
             if node.state != .empty {
@@ -115,7 +122,7 @@ class Farmer {
 
         // 3. If deadend, rollback
         //    Else, proceed
-        if isDeadend {
+        if isDeadend || oldCaskCount > self.caskCount {
             for node in modified {
                 node.state = .empty
                 self.caskCount -= 1
@@ -126,6 +133,8 @@ class Farmer {
             }
             return []
         }
+        
+        print("Last: \(last), Now: \(now)")
         
         return possibleMovements
     }

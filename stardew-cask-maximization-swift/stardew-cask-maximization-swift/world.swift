@@ -103,9 +103,9 @@ class World: NSCopying {
     
     private static func createNodes(width: Int, height: Int, stateModifier: (_ i: Int, _ j: Int)->Node.State ) -> [Node] {
         var nodes: [Node] = []
-        for _ in 0..<(width+2) {
-            for _ in 0..<(height+2) {
-                nodes.append(Node(state: .dummy))
+        for j in 0..<(width+2) {
+            for i in 0..<(height+2) {
+                nodes.append(Node(state: .dummy, i: i, j: j))
             }
         }
         

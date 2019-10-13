@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Node {
+class Node: CustomStringConvertible, Equatable {
     
     enum State {
         case dummy
@@ -27,6 +27,7 @@ class Node {
         case northwest = 5
         case southeast = 6
         case southwest = 7
+        case center = 8
     }
     
     var state: State = .empty
@@ -39,15 +40,17 @@ class Node {
         }
         return true
     }
+    var coord: (i: Int, j: Int)
     
-    init(state: State) {
+    init(state: State, i: Int, j: Int) {
         self.state = state
+        self.coord = (i: i, j: j)
     }
     
     func appendNeighbor(node: Node, at: Direction) {
         if neighbors.isEmpty {
             for _ in 0..<8 {
-                neighbors.append(WeakReference(Node(state: .dummy)))
+                neighbors.append(WeakReference(Node(state: .dummy, i: -1, j: -1)))
             }
         }
         neighbors[at.rawValue] = WeakReference(node)
@@ -70,6 +73,16 @@ class Node {
         case .start:
             print("S", terminator: "")
         }
+    }
+    
+    var description: String {
+        get {
+            return "(\(coord.i), \(coord.j)) \(state)"
+        }
+    }
+    
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        return lhs.coord.i == rhs.coord.i && lhs.coord.j == rhs.coord.j
     }
     
 //    func copy(with zone: NSZone? = nil) -> Any {
