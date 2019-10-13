@@ -8,11 +8,11 @@
 
 import Foundation
 
-let world = World(width: 3, height: 4)
-world.printWorld()
-
-let worldCopied = world.copy() as! World
-worldCopied.printWorld()
+let world = World(width: 3, height: 3)
+let farmer = Farmer(start: world.startingNode[0], world: world)
+farmer.install()
 
 let world2 = World(path: "map_test.txt")
-world2.printWorld()
+let farmer2 = Farmer(start: world2.startingNode[0], world: world2)
+farmer2.install()
+

@@ -25,7 +25,7 @@ class World: NSCopying {
         self.height = height
         var newNodes: [Node] = []
         for n in nodes {
-            newNodes.append(n.copy() as! Node)
+            newNodes.append(n)
         }
         self.nodes = newNodes
         self.startingNode = self.nodes.filter { $0.state == .start }

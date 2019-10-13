@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Node: NSCopying {
+class Node {
     
     enum State {
         case dummy
@@ -72,11 +72,11 @@ class Node: NSCopying {
         }
     }
     
-    func copy(with zone: NSZone? = nil) -> Any {
-        let copied = Node(state: self.state)
-        copied.neighbors = self.neighbors
-        copied.visited = self.visited
-        
-        return copied
-    }
+//    func copy(with zone: NSZone? = nil) -> Any {
+//        let copied = Node(state: self.state)
+//        copied.neighbors = self.neighbors
+//        copied.visited = self.visited
+//
+//        return copied
+//    }
 }
