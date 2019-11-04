@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Node: CustomStringConvertible, Equatable {
+class Node: CustomStringConvertible, Equatable, Hashable {
     
     enum State {
         case dummy
@@ -65,7 +65,7 @@ class Node: CustomStringConvertible, Equatable {
         case .dummy:
             print(".", terminator: "")
         case .empty:
-            print("O", terminator: "")
+            print(" ", terminator: "")
         case .cask:
             print("C", terminator: "")
         case .impossible:
@@ -76,9 +76,12 @@ class Node: CustomStringConvertible, Equatable {
     }
     
     var description: String {
-        get {
-            return "(\(coord.i), \(coord.j)) \(state)"
-        }
+        return "(\(coord.i), \(coord.j)) \(state)"
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(coord.i)
+        hasher.combine(coord.j)
     }
     
     static func == (lhs: Node, rhs: Node) -> Bool {

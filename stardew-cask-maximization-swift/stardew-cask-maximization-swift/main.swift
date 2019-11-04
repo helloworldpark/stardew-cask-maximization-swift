@@ -8,7 +8,7 @@
 
 import Foundation
 
-let world = World(width: 3, height: 3)
+let world = World(width: 9, height: 9)
 let farmer = Farmer(start: world.startingNode[0], world: world)
 farmer.install()
 
@@ -16,7 +16,7 @@ print()
 print("-------------------")
 print()
 
-let world2 = World(path: "map_test.txt")
+let world2 = World(path: "map_house.txt")
 let farmer2 = Farmer(start: world2.startingNode[0], world: world2)
 farmer2.install()
 

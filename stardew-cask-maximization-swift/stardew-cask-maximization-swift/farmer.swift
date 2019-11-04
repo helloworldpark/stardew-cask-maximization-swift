@@ -58,7 +58,7 @@ class Farmer {
         while stack.isEmpty == false {
             print("Stack: \(stack)")
             let popped = stack.removeLast()
-            let next = moveAndInstall(last: popped.last, now: popped.now)
+            let next = moveAndInstall(now: popped.now)
             if next.isEmpty {
                 // Deadend
                 print("Deadend")
@@ -80,8 +80,8 @@ class Farmer {
         print("Casks: \(self.caskCount)")
     }
     
-    private func moveAndInstall(last: Node, now: Node) -> [Node.Direction] {
-        print("Last: \(last), Now: \(now)")
+    private func moveAndInstall(now: Node) -> [Node.Direction] {
+        print("Now: \(now)")
         guard now.visited == false else {
             print("Visited")
             return []
@@ -122,7 +122,7 @@ class Farmer {
 
         // 3. If deadend, rollback
         //    Else, proceed
-        if isDeadend || oldCaskCount > self.caskCount {
+        if isDeadend || oldCaskCount >= self.caskCount {
             for node in modified {
                 node.state = .empty
                 self.caskCount -= 1
@@ -134,7 +134,7 @@ class Farmer {
             return []
         }
         
-        print("Last: \(last), Now: \(now)")
+        print("Now: \(now)")
         
         return possibleMovements
     }

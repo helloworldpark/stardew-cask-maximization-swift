@@ -34,6 +34,7 @@
 		CEE697232351F27100A6B3AC /* weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weak.swift; sourceTree = "<group>"; };
 		CEE697252352023A00A6B3AC /* map_test.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = map_test.txt; sourceTree = "<group>"; };
 		CEE6972623520AF300A6B3AC /* farmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = farmer.swift; sourceTree = "<group>"; };
+		CEE697282353335900A6B3AC /* map_house.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = map_house.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +72,7 @@
 				CEE697212351EEA800A6B3AC /* world.swift */,
 				CEE697232351F27100A6B3AC /* weak.swift */,
 				CEE697252352023A00A6B3AC /* map_test.txt */,
+				CEE697282353335900A6B3AC /* map_house.txt */,
 				CEE6972623520AF300A6B3AC /* farmer.swift */,
 			);
 			path = "stardew-cask-maximization-swift";
